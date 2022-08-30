@@ -1,29 +1,74 @@
 package studyProject;
 
+import java.util.Arrays;
+
 public class ProgramersStudy {
 
 	public static void main(String[] args) {
 		
-		int[] numbers = {1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5};
-		String hands = "right";
-		
-		String result = keypad(numbers, hands);
-		
-		System.out.println(result);
-		
+		int[] numbers = {1,2,3,4,6,7,8,0};
+		int sumNumb = emptyNumber(numbers);
+		System.out.println(sumNumb);
+
 	}
 
+	public static int emptyNumber(int[] numbers) {
+		
+		int result = 0;
+		int[] numberChk = {1,2,3,4,5,6,7,8,9,0};
+
+		for (int j : numberChk) {
+			if (!Arrays.stream(numbers).anyMatch(i -> i == j)) {
+				result += j;
+			}
+		}
+
+		return result;
+	}
+			
+	
+	
 	public static String keypad(int[] numbers, String hand) {
 		String handKey = "";
-	
-		//내 손이 있는 위치를 체크 
-		//그 위치에서 부터 다음에 눌러야 하는 키패드의 위치를 계산하는 함수를 짜야함
-		//나누거나 빼면 값이 나옴 
 		
-		
-		
-		
-		
+		int leftHand = 10; 
+		int rightHand = 12; 
+
+		for (int i : numbers) {
+			
+			if (i == 0) { i = 11;}
+			
+			if ( i == 1 ||  i == 4 || i == 7 ) {
+				handKey += "L";
+				leftHand = i;
+			} else if ( i == 3 ||  i == 6 || i == 9 ) {
+				handKey += "R";
+				rightHand = i;
+			} else if (i == 2 ||  i == 5 || i == 8 || i == 11) {
+
+				int leftDis = ( (leftHand - i) / 3 ) + ( (leftHand - i) % 3);
+				
+				int rightDis = (( rightHand - i) / 3 ) + ( (rightHand - i) % 3);
+
+				if (leftDis == rightDis) {
+					handKey += hand == "right" ? "R" : "L";
+				} else {
+					
+					if (Math.abs(rightDis) < Math.abs(leftDis)) {
+						rightHand = i;
+						handKey += "R";
+					} else {
+						leftHand = i;
+						handKey += "L";
+					}
+					
+				}
+				
+				
+			}
+			
+		}
+
 		return handKey;
 	}
 	
