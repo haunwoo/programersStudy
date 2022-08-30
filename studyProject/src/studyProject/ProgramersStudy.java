@@ -1,16 +1,33 @@
 package studyProject;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProgramersStudy {
 
 	public static void main(String[] args) {
 		
-		int[] numbers = {1,2,3,4,6,7,8,0};
-		int sumNumb = emptyNumber(numbers);
-		System.out.println(sumNumb);
+		System.out.println(numToString("one4seveneight"));
 
 	}
+	
+	public static int numToString(String s) {
+		
+		int answer = 0;
+
+		String[] toString = {"zero","one","two","three","four","five","six","seven","eight","nine"};
+		
+		for (int i = 0; i < toString.length; i++) {
+			
+			s = s.replace(toString[i], String.valueOf(i));
+		}
+			
+		
+		return Integer.parseInt(s);
+	}
+	
+	
 
 	public static int emptyNumber(int[] numbers) {
 		
