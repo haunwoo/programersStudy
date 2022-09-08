@@ -16,7 +16,7 @@ public class studyProject_failPer {
 		
 		//[3,4,2,1,5]
 		
-		int[] result = solution(N, stage);
+		int[] result = solution_(N, stage);
 			//System.out.println(result.toString());
 		
 		
